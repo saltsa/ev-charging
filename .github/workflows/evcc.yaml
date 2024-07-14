@@ -26,11 +26,10 @@ jobs:
       - name: Build
         run: |
           docker version
-          docker build --platform amd64 -t ghcr.io/${{ github.repository }} .
           docker build --platform arm64 -t ghcr.io/${{ github.repository }} .
       - name: Tag
         run: |
-          docker tag ghcr.io/${{ github.repository }} ghcr.io/${{ github.repository }}/foo:${{ env.IMAGE_TAG }}
+          docker tag ghcr.io/${{ github.repository }} ghcr.io/${{ github.repository }}:${{ env.IMAGE_TAG }}
       - name: Push
         run: |
-          docker push ghcr.io/${{ github.repository }}/foo:${{ env.IMAGE_TAG }}
+          docker push ghcr.io/${{ github.repository }}:${{ env.IMAGE_TAG }}
